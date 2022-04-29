@@ -1,0 +1,19 @@
+<h4>Hijo</h4>
+<p style="color: brown;" *ngIf=" txtMensaje != '' "> {{txtMensaje}} </p>
+<input type="text" placeholder="Nombre de la persona" [(ngModel)]="nombrePersona">
+<br>
+<input type="number" placeholder="Edad de la persona" [(ngModel)]="edadPersona" >
+<br>
+<input type="text" placeholder="Sexo de la persona" [(ngModel)]="sexo">
+<br>
+
+<button (click)="guardarInformacion()"> Guardar </button>
+<button (click)="actualizarInformacion()"> Actualizar </button>
+
+
+
+<br>
+
+<pre>{{listaData | json}}</pre>
+<hr>
+<pre>{{recibirDatos | json}}</pre>
