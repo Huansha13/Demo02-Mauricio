@@ -1,12 +1,13 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import { PersonasComponent } from './personas/personas.component';
+import {RickService} from "./rick.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   @ViewChild(PersonasComponent) personasComponent: PersonasComponent;
   title = 'demo02';
   listaPersonas: any[] = [
@@ -21,7 +22,19 @@ export class AppComponent {
       sexo: 'm'
     }
   ];
+  listaCharacters: any[] = [];
 
+  constructor( private rickService: RickService ) { }
+
+  ngOnInit(): void {
+    this.rickService.getcharacters().subscribe((data) => {
+      console.log(data.results)
+      this.listaCharacters = data.results;
+    });
+    this.rickService.getlocations().subscribe((value:any) =>{
+      console.log(value);
+    })
+  }
 
   datosPersona(request: any) {
     console.log(request);
